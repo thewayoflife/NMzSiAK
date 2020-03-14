@@ -40,7 +40,6 @@ def volume_keys(): # The Key pressed is going to control the sound volume
 done = False
 while not done:
     volume_keys()
-    speed_keys()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
