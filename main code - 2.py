@@ -19,34 +19,33 @@ img2 = pygame.image.load('Desna.png')
 button1 = pygame.Rect(28, 230, 110, 30) # left, top, width, height
 button2 = pygame.Rect(168, 230, 110, 30) # left, top, width, height
 
-sound1 = wave.open('sound1.wav', 'rb')  #otvara sound.wav za citanje
-RATE=sound1.getframerate()*2             
-signal = sound1.readframes(-1)
+sound1 = wave.open('sound1.wav', 'rb') #otvara sound1.wav za čitanje
+RATE1 = sound1.getframerate()*2  # iz nekog razloga mora ovako da bi pesma išla normalnom brzinom           
+signal1 = sound1.readframes(-1)
 
-sound2 = wave.open('sound2.wav', 'rb')  #otvara sound.wav za citanje
-RATE=sound2.getframerate()*2             
-signal = sound2.readframes(-1)
+sound2 = wave.open('sound2.wav', 'rb') #otvara sound2.wav za čitanje
+RATE2 = sound2.getframerate()*2  # iz nekog razloga mora ovako da bi pesma išla normalnom brzinom           
+signal2 = sound2.readframes(-1)
 
 
-wf1 = wave.open('sound1-new.wav', 'wb')   #otvara sound.wav za pisanje
+wf1 = wave.open('sound1-new.wav', 'wb') #kreira i otvara sound1-new.wav za pisanje
 wf1.setnchannels(CHANNELS)
 wf1.setsampwidth(swidth)
-wf1.setframerate(RATE*Change_RATE)   #menja framerate (trnutni * promena) ako je promena <1 && >0 onda usporava, ako je >1 onda se ubrzava
-wf1.writeframes(signal)
+wf1.setframerate(RATE1*Change_RATE) #menja framerate (trenutni*promena) ako je promena <1 && >0 onda usporava, ako je >1 onda se ubrzava
+wf1.writeframes(signal1)
 wf1.close()
 
-wf2 = wave.open('sound2-new.wav', 'wb')   #otvara sound.wav za pisanje
+wf2 = wave.open('sound2-new.wav', 'wb') #kreira i otvara sound.wav za pisanje
 wf2.setnchannels(CHANNELS)
 wf2.setsampwidth(swidth)
-wf2.setframerate(RATE*Change_RATE)   #menja framerate (trnutni * promena) ako je promena <1 && >0 onda usporava, ako je >1 onda se ubrzava
-wf2.writeframes(signal)
+wf2.setframerate(RATE2*Change_RATE) #menja framerate (trenutni*promena) ako je promena <1 && >0 onda usporava, ako je >1 onda se ubrzava
+wf2.writeframes(signal2)
 wf2.close()
 
 
 song1 = pygame.mixer.Sound('sound1-new.wav')
 song2 = pygame.mixer.Sound('sound2-new.wav')
-#song1.stop()
-#song2.stop()
+
 
 def volume_keys(): # The Key pressed is going to control the sound volume
     keys = pygame.key.get_pressed()       
@@ -63,6 +62,7 @@ def volume_keys(): # The Key pressed is going to control the sound volume
         song1.set_volume(n1 - 0.059)
         song2.set_volume(n2 - 0.059)
         print(song1.get_volume())
+
 
 music_sound1 = False
 music_sound2 = False
